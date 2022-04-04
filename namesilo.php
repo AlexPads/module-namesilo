@@ -3096,7 +3096,9 @@ class Namesilo extends RegistrarModule
             $row->meta->key,
             $row->meta->sandbox == 'true'
         );
-        $result = $api->submit('getPrices')->response();
+        $response = $api->submit('getPrices');
+        $this->processResponse($api, $response);
+        $result = $response->response();
         $tlds = [];
 
         if (isset($result->detail) && $result->detail == 'success') {
